@@ -1,0 +1,177 @@
+<!-- ================= PLAYER BOX ================= -->
+<div class="fake-video-box">
+
+  <!-- LOADING -->
+  <div id="loadingScreen">
+    <div class="loader"></div>
+    <p>Loading ... ⏳</p>
+  </div>
+
+  <!-- BUTTON -->
+  <button id="playBtn" class="video-trigger-btn">
+    ▶ OPEN-Y0gida-VJ ICEP🎬
+  </button>
+
+</div>
+
+<!-- ================= STYLES ================= -->
+<style>
+
+/* BOX */
+.fake-video-box{
+  position:relative;
+  width:100%;
+  max-width:800px;
+  height:400px;
+  margin:20px auto;
+  background:#000;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+/* LOADER */
+#loadingScreen{
+  position:absolute;
+  text-align:center;
+  color:#fff;
+}
+
+.loader{
+  border:5px solid #444;
+  border-top:5px solid #fff;
+  border-radius:50%;
+  width:50px;
+  height:50px;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+  100%{transform:rotate(360deg);}
+}
+
+/* BUTTON */
+.video-trigger-btn{
+  display:none;
+  padding:18px 40px;
+  font-size:22px;
+  font-weight:bold;
+  background:#ff0000;
+  color:#fff;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+</style>
+
+<!-- ================= SCRIPT ================= -->
+<script>
+
+/* SHOW BUTTON AFTER 10 SECONDS */
+setTimeout(()=>{
+  document.getElementById("loadingScreen").style.display="none";
+  document.getElementById("playBtn").style.display="block";
+},10000);
+
+/* CLICK → OPEN IN NEW TAB */
+document.getElementById("playBtn").onclick=function(){
+
+  window.open(
+    "https://www.google.com/url?q=https%3A%2F%2Fyogida-1-2.marketing2advertising.com%2F&sa=D&sntz=1&usg=AOvVaw0HITtnroofmK76LP7HlEk4", // 🔥 PUT YOUR LINK HERE
+    "_blank"
+  );
+
+};
+
+</script>
+
+
+
+<div id="embed-grid"></div>
+
+<style>
+#embed-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:12px;
+  max-width:1100px;
+  margin:20px auto;
+}
+
+.embed-box{
+  position:relative;
+  width:100%;
+  height:10;
+  padding-bottom:56.25%;
+  background:#000;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.embed-box iframe{
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  border:none;
+}
+</style>
+
+<script>
+// ==== SETTINGS ====
+var postsPerLoad = 2;
+
+// ==== STORAGE ====
+var posts = [];
+
+// ==== BLOGGER CALLBACK ====
+function feed(json){
+  if(json.feed && json.feed.entry){
+
+    json.feed.entry.forEach(function(e){
+
+      var linkObj = e.link.find(function(l){
+        return l.rel === "alternate";
+      });
+
+      if(linkObj){
+        posts.push(linkObj.href);
+      }
+
+    });
+
+    renderEmbeds(); // load once after fetch
+  }
+}
+
+// ==== RENDER (NO RELOAD) ====
+function renderEmbeds(){
+  var container = document.getElementById("embed-grid");
+
+  var slice = posts.slice(0, postsPerLoad);
+
+  slice.forEach(function(url){
+    var box = document.createElement("div");
+    box.className = "embed-box";
+
+    var iframe = document.createElement("iframe");
+    iframe.src = url;
+    iframe.loading = "lazy";
+
+    box.appendChild(iframe);
+    container.appendChild(box);
+  });
+}
+
+// ==== LOAD BLOGGER FEED ====
+var s = document.createElement("script");
+s.src = "https://www.gynecologist.shop/feeds/pages/default?alt=json-in-script&max-results=100&callback=feed";
+document.body.appendChild(s);
+</script>
+
+
+<script async src="https://telegram.org/js/telegram-widget.js?23" data-telegram-post="nakamovies/414" data-width="100%"></script>
